@@ -1,0 +1,42 @@
+<div #wrapper class="content-wrapper">
+    <div class="container">
+        <section class="content">
+            <div class="row team-list">
+                <div *ngIf="teamList && teamList.data.length">
+                    <form class="row g-3">
+                        <div class="col-auto">
+                            <select id="teamInput" [(ngModel)]="teamList.data" class="form-control form-control"
+                                (change)="getTeamName($event)" [ngModelOptions]="{standalone: true}">
+                                <option *ngFor="let c of teamList.data" [value]="c.id">{{c.full_name}}</option>
+                            </select>
+                        </div>
+                        <div class="col-auto">
+                            <button id="trackBtn" type="submit" class="btn btn-primary mb-3"
+                                (click)="getTeamDetails()">Track team</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="content">
+            <div *ngIf="teamDetailsList && teamDetailsList?.length">
+                <div *ngFor="let item of teamDetailsList; let idx = index">
+                    <div class="row">
+                        <div class="col-12 py-5">
+                            <div class="card">
+                                <button type="submit" class="btn remove" (click)="deleteTeam(item)">X</button>
+                                <div class="d-grid gap-2 col-6 mx-auto">
+                                    <button id="sentimateBtn" type="submit" style="margin-bottom: 10px;"
+                                        class="btn btn-secondary">
+                                        See game results >>
+                                        ></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
